@@ -1,7 +1,7 @@
 Summary: Library to override DNS settings
 Name: libdns-override
 Version: 1.0
-Release: %{?dist}
+Release: 1%{?dist}
 License: GNU GPL v3
 
 Source0: dns-override.c
