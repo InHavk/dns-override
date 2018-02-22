@@ -1,12 +1,10 @@
 Summary: Library to override DNS settings
 Name: libdns-override
 Version: 1.0
-Release: 1
+Release: %{?dist}
 License: GNU GPL v3
 
 Source0: dns-override.c
-
-%define dest_folder /var/lib64
 
 %description
 Used to override DNS settings for a single process (and its decendants) using the glibc resolv
@@ -14,17 +12,17 @@ Used to override DNS settings for a single process (and its decendants) using th
 %prep
 
 %build
-make all
+gcc -Wall -Werror -fPIC -shared -o dns-override.so ${SOURCE0} -ldl
 
 %install
-mkdir -p $RPM_BUILD_ROOT%{dest_folder}
-cp -r %{source_folder}/dns-override.so %buildroot/var/lib64/
+mkdir -p %{buildroot}/%{_libdir}
+cp -r %{source_folder}/dns-override.so %{buildroot}/%{_libdir}/
 
 %clean
-%{__rm} -rf $RPM_BUILD_ROOT
+%{__rm} -rf %{buildroot}
 
 %files
-%{dest_folder}/dns-override.so
+%{_libdir}/dns-override.so
 
 %post
 
