@@ -16,7 +16,7 @@ gcc -Wall -Werror -fPIC -shared -o dns-override.so ${SOURCE0} -ldl
 
 %install
 mkdir -p %{buildroot}/%{_libdir}
-cp -r %{source_folder}/dns-override.so %{buildroot}/%{_libdir}/
+cp dns-override.so %{buildroot}/%{_libdir}/dns-override.so
 
 %clean
 %{__rm} -rf %{buildroot}
